@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,9 +12,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 't!)p6@ix#o@i^jxc63ziqogem1ku5je0tb@r^3xk!@f@+zv39)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -27,6 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'photo.apps.PhotoConfig',
     'accounts.apps.AccountsConfig',
+    'disqus',
+    'django.contrib.sites',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -37,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -69,6 +74,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 
 
 # Password validation
@@ -116,3 +123,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 LOGIN_REDIRECT_URL = '/'
+
+
+DISQUS_WEBSITE_SHORTNAME = 'dstagram-django-8761'
+SITE_ID = 1
+
+
+AWS_ACCESS_KEY_ID = 'AKIARVWBEE6MJURTTKMM'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_REGION = 'ap-northeast-2'
+AWS_STORAGE_BUCKET_NAME = 'dstagram8761'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+DEFAULT_FILE_STORAGE = 'config.asset_storage.MediaStorage'
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

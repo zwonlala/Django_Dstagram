@@ -16,6 +16,9 @@
 
         <a href="{% url 'photo:photo_delete' pk=object.id %}" class="btn btn-outline-dnager btn-sm float-right">Delete</a>
         <a href="{% url 'photo:photo_update' pk=object.id %}" class="btn btn-outline-success btn-sm float-right">Update</a>
+
+        {% load disqus_tags %}
+        {% disqus_show_comments %}
     </div>
 
     <div class="col-md-2"></div>

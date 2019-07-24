@@ -1,11 +1,12 @@
-reated by https://www.gitignore.io/api/django
-# Edit at https://www.gitignore.io/?templates=django
+*.pyc
+*~
+/venv
+__pycache__
+db.sqlite3
+.DS_Store
 
-#ide files
 .idea/*
 
-
-### Django ###
 *.log
 *.pot
 *.pyc

@@ -9,7 +9,7 @@
     <div class="col-md-8 panel panel-default">
         <form action="" method="post" enctype="multipart/form-data">
             {{ form.as_p }}
-            {% crsf_token %}}
+            {% csrf_token %}
             <input type="submit" class="btn btn-primary" value="Upload">
         </form>
     </div>
