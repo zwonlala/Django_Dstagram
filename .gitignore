@@ -1,4 +1,4 @@
-config/jiwon_self.py
+.config/jiwon_self.py
 
 *.pyc
 *~
