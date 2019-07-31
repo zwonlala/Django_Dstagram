@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'disqus',
     'django.contrib.sites',
-    # 'storages',
+    'storages',
 ]
 
 MIDDLEWARE = [
